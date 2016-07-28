@@ -2,7 +2,7 @@
     "name": "axelero/axelero-mailgun-bundle",
     "type": "library",
     "require": {
-        "mailgun/mailgun-php": "v2*"
+        "mailgun/mailgun-php": "~2.0"
     },
     "license": "mit",
     "authors": [
