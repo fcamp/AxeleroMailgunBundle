@@ -1,0 +1,15 @@
+{
+    "name": "axelero/axelero-mailgun-bundle",
+    "type": "library",
+    "require": {
+        "mailgun/mailgun-php": "v2*"
+    },
+    "license": "mit",
+    "authors": [
+        {
+            "name": "Francesco Campana",
+            "email": "francesco.campana.76@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable"
+}
