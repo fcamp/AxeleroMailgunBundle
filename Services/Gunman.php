@@ -3,6 +3,8 @@ namespace Axelero\MailgunBundle\Services;
 
 
 use Mailgun\Mailgun;
+use Mailgun\Messages\BatchMessage;
+use Mailgun\Messages\MessageBuilder;
 
 class Gunman
 {
@@ -51,5 +53,29 @@ class Gunman
     {
         $this->domain = $domain;
         return $this;
+    }
+
+    /**
+     * Batch sends the message
+     * @param string $from
+     * @param string $subject
+     * @param string $body
+     * @param array $recipients. Each item has to be ['email' => 'mail@address.com','first' => 'userFirstname', 'last' => 'userLastname']
+     */
+    public function batchSend($from, $subject, $body, array $recipients)
+    {
+        /**
+         * @var $bb BatchMessage
+         */
+        $bb = $this->gun->BatchMessage($this->domain);
+        $bb->setFromAddress($from);
+        $bb->setSubject($subject);
+        $bb->setHtmlBody($body);
+
+        foreach ($recipients as $r) {
+            $bb->addToRecipient($r['email'], array_filter(['first' => $r['first'], 'last' => $r['last']]));
+        }
+
+        $bb->finalize();
     }
 }

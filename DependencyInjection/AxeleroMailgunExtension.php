@@ -21,6 +21,8 @@ class AxeleroMailgunExtension extends Extension
     {
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
+        $container->setParameter('axelero_mailgun.api_key', $config['api_key']);
+        $container->setParameter('axelero_mailgun.domain', $config['domain']);
 
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
