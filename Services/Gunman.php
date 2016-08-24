@@ -21,9 +21,17 @@ class Gunman
     private $domain;
 
     /**
-     * @vara Mailgun
+     * @var Mailgun
      */
     private $gun;
+
+    /**
+     * @return Mailgun
+     */
+    public function getGun()
+    {
+        return empty($this->key) ? $this->gun : new Mailgun($this->key);
+    }
 
     /**
      * Gunman constructor.
@@ -67,7 +75,7 @@ class Gunman
         /**
          * @var $bb BatchMessage
          */
-        $bb = $this->gun->BatchMessage($this->domain);
+        $bb = $this->getGun()->BatchMessage($this->domain);
         $bb->setFromAddress($from);
         $bb->setSubject($subject);
         $bb->setHtmlBody($body);
