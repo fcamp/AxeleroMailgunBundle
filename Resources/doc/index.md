@@ -83,14 +83,17 @@ Example:
   By default you can send mails with the account configured in your config.yml
   
 ``` php
-    $this->gunman
+
+    
+
+    $this->get("axelero_mailgun.gunman")
     ->batchSend('from@email.com', 'mailTitle', '<h1>Your Content</h1>', $recipients);
 ```
 
 Otherwise you can configure api parameters at runtime
 
 ``` php
-    $this->gunman
+    $this->get("axelero_mailgun.gunman")
     ->setKey($key)
     ->setDomain($domain)
     ->batchSend('from@email.com', 'mailTitle', '<h1>Your Content</h1>', $recipients);
