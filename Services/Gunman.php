@@ -85,11 +85,13 @@ class Gunman
         $bb->setTextBody($this->cleanUp($body));
 
         $notCustom = ['email', 'first', 'last'];
-        foreach ($recipients as $r) {
-            $bb->addToRecipient($r['email'], array_filter(['first' => $r['first'], 'last' => $r['last']]));
+
+        foreach ($recipients as $recipent) {
+
+            $bb->addToRecipient($recipent['email'], $recipent);
 
             //all the other fields are considered as custom data
-            foreach ($this->array_filter_key($r, function ($i) use ($notCustom) {
+            foreach ($this->array_filter_key($recipent, function ($i) use ($notCustom) {
                 return array_search($i, $notCustom) === false;
             }) as $k => $v) {//
                 $bb->addCustomData($k, $v);
